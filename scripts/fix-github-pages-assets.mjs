@@ -5,12 +5,9 @@ const root = path.resolve('dist');
 const base = '/study-abroad-pinwheel';
 const textExtensions = new Set(['.html', '.css', '.js', '.xml', '.txt']);
 
+// Astro already prefixes generated /_astro assets when `base` is configured.
+// Only rewrite root-relative content and navigation paths that the theme itself owns.
 const replacements = [
-  ['="/_astro/', `="${base}/_astro/`],
-  ["='/_astro/", `='${base}/_astro/`],
-  ['url("/_astro/', `url("${base}/_astro/`],
-  ["url('/_astro/", `url('${base}/_astro/`],
-  ['url(/_astro/', `url(${base}/_astro/`],
   ['="/images/', `="${base}/images/`],
   ["='/images/", `='${base}/images/`],
   ['url("/images/', `url("${base}/images/`],
@@ -40,6 +37,9 @@ function walk(dir) {
 walk(root);
 
 const index = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+if (index.includes(`${base}${base}/_astro/`)) {
+  throw new Error('GitHub Pages base path was duplicated for Astro assets');
+}
 if (index.includes('="/_astro/') || index.includes("='/_astro/")) {
   throw new Error('Root-level Astro asset paths remain in dist/index.html');
 }
