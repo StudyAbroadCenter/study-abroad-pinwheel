@@ -33,9 +33,12 @@ jobs:
 
       - name: Serve built site and capture homepage
         run: |
-          python3 -m http.server 8080 --directory dist > /tmp/http-server.log 2>&1 &
-          npx wait-on --timeout 30000 http://127.0.0.1:8080/
-          npx playwright screenshot --viewport-size=1536,1024 --full-page http://127.0.0.1:8080/ homepage.png
+          rm -rf preview-root
+          mkdir -p preview-root/study-abroad-pinwheel
+          cp -R dist/. preview-root/study-abroad-pinwheel/
+          python3 -m http.server 8080 --directory preview-root > /tmp/http-server.log 2>&1 &
+          npx wait-on --timeout 30000 http://127.0.0.1:8080/study-abroad-pinwheel/
+          npx playwright screenshot --viewport-size=1536,1024 --full-page http://127.0.0.1:8080/study-abroad-pinwheel/ homepage.png
 
       - name: Upload screenshot
         uses: actions/upload-artifact@v4
