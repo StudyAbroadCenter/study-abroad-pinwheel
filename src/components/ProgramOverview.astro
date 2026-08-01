@@ -1,0 +1,82 @@
+---
+import Base from "@/layouts/Base.astro";
+
+interface Props {
+  title: string;
+  season: string;
+  duration: string;
+  dates: string;
+  fee: string;
+  total: string;
+  japanese: string;
+  studies: string;
+  transcript: string;
+  application: string;
+  payment: string;
+  accent?: string;
+}
+
+const {
+  title,
+  season,
+  duration,
+  dates,
+  fee,
+  total,
+  japanese,
+  studies,
+  transcript,
+  application,
+  payment,
+  accent = "#9f1239",
+} = Astro.props;
+---
+
+<Base title={title} description={`${season}に京都で学ぶ${duration}の集中日本語プログラム`}>
+  <section class="relative overflow-hidden py-20 lg:py-28">
+    <div class="container">
+      <div class="grid items-start gap-12 lg:grid-cols-[1.15fr_.85fr]">
+        <div>
+          <p class="mb-4 text-sm font-bold uppercase tracking-[0.24em]" style={`color:${accent}`}>{season} · {duration}</p>
+          <h1 class="mb-6 text-5xl font-bold leading-tight lg:text-7xl">{title}</h1>
+          <p class="max-w-2xl text-lg leading-8 text-text">集中日本語、Japan Studies、京都でのフィールドワーク、立命館BUDDYとの交流を組み合わせた非学位の短期プログラムです。</p>
+        </div>
+        <aside class="rounded-3xl bg-white p-8 shadow-xl">
+          <dl class="space-y-5">
+            <div><dt class="text-sm text-text">実施期間</dt><dd class="text-xl font-bold">{dates}</dd></div>
+            <div><dt class="text-sm text-text">プログラム費</dt><dd class="text-3xl font-bold" style={`color:${accent}`}>{fee}</dd></div>
+            <div><dt class="text-sm text-text">学習時間</dt><dd class="text-xl font-bold">{total}</dd></div>
+          </dl>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="container grid gap-6 md:grid-cols-3">
+      <article class="rounded-3xl bg-theme-light p-7"><h2 class="mb-3 text-2xl font-bold">日本語</h2><p class="leading-7 text-text">{japanese}</p></article>
+      <article class="rounded-3xl bg-theme-light p-7"><h2 class="mb-3 text-2xl font-bold">Japan Studies</h2><p class="leading-7 text-text">{studies}</p></article>
+      <article class="rounded-3xl bg-theme-light p-7"><h2 class="mb-3 text-2xl font-bold">修了時</h2><p class="leading-7 text-text">{transcript}</p></article>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="container grid gap-10 lg:grid-cols-2">
+      <div>
+        <h2 class="mb-5 text-4xl font-bold">このプログラムで体験すること</h2>
+        <ul class="space-y-4 text-lg leading-8 text-text">
+          <li>会話・読解・作文をバランスよく扱う集中日本語</li>
+          <li>日本文化を学ぶ講義、特別講義、フィールドワーク</li>
+          <li>立命館BUDDYとのグループ交流</li>
+          <li>オリエンテーション、キャンパスツアー、修了式</li>
+        </ul>
+      </div>
+      <div class="rounded-3xl border border-border p-8">
+        <h2 class="mb-5 text-3xl font-bold">申込スケジュール</h2>
+        <p class="mb-3"><span class="font-bold">申込期間：</span>{application}</p>
+        <p><span class="font-bold">支払期限：</span>{payment}</p>
+        <p class="mt-6 text-sm leading-6 text-text">参加者は初日のオリエンテーションから最終日の修了式まで、全日程への参加が必要です。定員に達した場合は受付を終了します。</p>
+      </div>
+    </div>
+  </section>
+</Base>
