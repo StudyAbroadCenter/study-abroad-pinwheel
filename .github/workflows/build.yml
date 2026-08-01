@@ -1,0 +1,44 @@
+name: Build and review Astro site
+
+on:
+  push:
+    branches: [main, agent/pinwheel-foundation]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Check and build
+        run: npm run build
+
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps chromium
+
+      - name: Start preview and capture homepage
+        run: |
+          npm run preview -- --host 127.0.0.1 > /tmp/preview.log 2>&1 &
+          npx wait-on http://127.0.0.1:4321/study-abroad-pinwheel/
+          npx playwright screenshot --viewport-size=1536,1024 --full-page http://127.0.0.1:4321/study-abroad-pinwheel/ homepage.png
+
+      - name: Upload screenshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: homepage-screenshot
+          path: homepage.png
