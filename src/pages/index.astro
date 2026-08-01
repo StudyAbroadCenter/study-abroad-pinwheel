@@ -1,181 +1,24 @@
 ---
-import "../styles/global.css";
+import Base from "@/layouts/Base.astro";
+import Banner from "@/layouts/components/Banner.astro";
+import KeyFeatures from "@/layouts/components/KeyFeatures.astro";
+import Service from "@/layouts/components/Service.astro";
+import Testimonial from "@/layouts/components/Testimonial.astro";
+import Cta from "@/layouts/partials/Cta.astro";
+import type { CollectionEntry } from "astro:content";
+import { getEntry } from "astro:content";
 
-const programmes = [
-  {
-    tag: "4 WEEKS · KYOTO",
-    title: "Ritsumeikan Winter Japanese Program",
-    copy: "Japanese language, culture and friendships—designed as one connected experience.",
-  },
-  {
-    tag: "2 WEEKS · INTENSIVE",
-    title: "RWJP Express",
-    copy: "A compact programme for students who want to turn a short stay into real momentum.",
-  },
-  {
-    tag: "CUSTOM · FACULTY-LED",
-    title: "Study Tours",
-    copy: "Build a programme around your academic theme, from disaster response to Japanese society.",
-  },
-  {
-    tag: "PARTNER PROGRAMME",
-    title: "Tailor-made Learning",
-    copy: "Language classes, field studies, buddies and Kyoto—combined for your institution.",
-  },
-];
-
-const steps = [
-  ["Choose", "Find the programme that matches your goals, schedule and Japanese level."],
-  ["Prepare", "Our team guides you through application, accommodation and arrival."],
-  ["Experience", "Learn in class, explore Kyoto and connect with local students."],
-  ["Take it home", "Leave with skills, friendships and a new way of seeing Japan."],
-];
+const homepage = (await getEntry(
+  "homepage",
+  "-index"
+)) as CollectionEntry<"homepage">;
+const { banner, key_features, service, testimonial } = homepage.data;
 ---
 
-<!doctype html>
-<html lang="ja">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="description" content="立命館大学で学ぶ短期留学プログラムのプロトタイプサイト" />
-    <title>Ritsumeikan Study Abroad Center | Prototype</title>
-  </head>
-  <body>
-    <header class="site-header">
-      <a class="brand" href="#top" aria-label="トップへ">
-        <span class="brand-mark"></span>
-        <span>Study Abroad Center<small>RITSUMEIKAN PROGRAMMES</small></span>
-      </a>
-      <nav class="nav" aria-label="メインナビゲーション">
-        <a href="#programmes">Programmes</a>
-        <a href="#experience">Experience</a>
-        <a href="#faq">FAQ</a>
-      </nav>
-      <a class="header-cta" href="#contact">English site →</a>
-    </header>
-
-    <main id="top">
-      <section class="hero">
-        <div class="container hero-inner">
-          <div class="hero-copy">
-            <p class="eyebrow">Study in Kyoto · Live the experience</p>
-            <h1>学ぶだけでは、<span>終わらない。</span></h1>
-            <p class="hero-lede">
-              日本語、京都、キャンパスライフ、そして世界から集まる仲間たち。
-              知識を得るだけではなく、自分の世界を少し広げる留学へ。
-            </p>
-            <div class="hero-actions">
-              <a class="btn btn-primary" href="#programmes">プログラムを見る</a>
-              <a class="btn btn-ghost" href="#experience">留学体験を知る</a>
-            </div>
-          </div>
-
-          <aside class="hero-card" aria-label="プログラム概要">
-            <p class="eyebrow">Make it real.</p>
-            <h2>Kyoto becomes your classroom.</h2>
-            <div class="fact"><strong>2–4</strong><span>週間から選べる短期プログラム</span></div>
-            <div class="fact"><strong>15+</strong><span>世界各地から集まる参加者</span></div>
-            <div class="fact"><strong>1</strong><span>忘れられない京都での体験</span></div>
-          </aside>
-        </div>
-      </section>
-
-      <div class="marquee" aria-hidden="true">
-        <div class="marquee-track">
-          <span>BEAUTIFUL</span><span>SIMPLE</span><span>SUSTAINABLE</span><span>KYOTO</span><span>LEARN</span><span>CONNECT</span>
-          <span>BEAUTIFUL</span><span>SIMPLE</span><span>SUSTAINABLE</span><span>KYOTO</span><span>LEARN</span><span>CONNECT</span>
-        </div>
-      </div>
-
-      <section class="section" id="programmes">
-        <div class="container">
-          <div class="section-head">
-            <div>
-              <p class="eyebrow">Programmes</p>
-              <h2>Choose your way into Japan.</h2>
-            </div>
-            <p class="section-intro">
-              期間、学習テーマ、語学レベルに合わせて選べるプログラム。
-              どのコースにも、教室の外へ踏み出す体験を組み込んでいます。
-            </p>
-          </div>
-
-          <div class="program-grid">
-            {programmes.map((programme, index) => (
-              <article class="program-card">
-                <div class="card-top">
-                  <span class="card-number">0{index + 1}</span>
-                  <span class="card-tag">{programme.tag}</span>
-                </div>
-                <div>
-                  <h3>{programme.title}</h3>
-                  <p>{programme.copy}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section class="section statement" id="experience">
-        <div class="container">
-          <p class="eyebrow">Not just a programme</p>
-          <div class="statement-copy">
-            京都を歩き、ことばを使い、誰かと出会う。<br />そのすべてが、<em>学びになる。</em>
-          </div>
-          <p class="statement-note">
-            A short-term programme should not feel like a compressed timetable.
-            It should feel like a new chapter—clear, human and worth remembering.
-          </p>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="container journey">
-          <div>
-            <p class="eyebrow">Your journey</p>
-            <h2>From curiosity to confidence.</h2>
-            <p class="section-intro">申込み前の迷いから、帰国後の成長まで。ひとつながりの留学体験として支えます。</p>
-          </div>
-          <div class="journey-steps">
-            {steps.map((step, index) => (
-              <article class="step">
-                <span class="step-num">{index + 1}</span>
-                <div><h3>{step[0]}</h3><p>{step[1]}</p></div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section class="section faq" id="faq">
-        <div class="container">
-          <div class="section-head">
-            <div><p class="eyebrow">FAQ</p><h2>Before you arrive.</h2></div>
-            <p class="section-intro">最初に知っておきたいことを、できるだけ分かりやすくまとめます。</p>
-          </div>
-          <details open><summary>日本語を学んだことがなくても参加できますか？</summary><p>プログラムにより条件が異なります。初級者向けコースでは、事前にひらがな・カタカナの学習をお願いする場合があります。</p></details>
-          <details><summary>宿泊はプログラム費に含まれますか？</summary><p>大学宿舎または外部宿泊施設を案内します。含まれる費用と別途必要な費用は、各プログラム詳細で明確に表示します。</p></details>
-          <details><summary>現地学生との交流はありますか？</summary><p>バディ制度や交流企画を通じて、立命館大学の学生とつながる機会を設けています。</p></details>
-        </div>
-      </section>
-
-      <section class="cta" id="contact">
-        <div class="container cta-box">
-          <div>
-            <h2>Your Kyoto story starts here.</h2>
-            <p>気になるプログラムを見つけたら、詳細ページへ。まだ決めきれないときは、まず概要を比較してください。</p>
-          </div>
-          <a class="btn" href="#programmes">Explore programmes →</a>
-        </div>
-      </section>
-    </main>
-
-    <footer>
-      <div class="container footer-inner">
-        <span>Ritsumeikan Study Abroad Center — Prototype</span>
-        <span>This is not an official university website.</span>
-      </div>
-    </footer>
-  </body>
-</html>
+<Base>
+  <Banner banner={banner} />
+  <KeyFeatures key_features={key_features} />
+  <Service service={service} />
+  <Testimonial testimonial={testimonial} />
+  <Cta />
+</Base>
