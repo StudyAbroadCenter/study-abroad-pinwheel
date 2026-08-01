@@ -1,6 +1,6 @@
 {
   "site": {
-    "title": "Pinwheel Astro",
+    "title": "立命館大学 短期受入プログラム",
     "base_url": "https://studyabroadcenter.github.io",
     "base_path": "/study-abroad-pinwheel",
     "trailing_slash": false,
@@ -8,40 +8,35 @@
     "logo": "/images/logo.png",
     "logo_width": "147",
     "logo_height": "31",
-    "logo_text": "Pinwheel"
+    "logo_text": "Ritsumeikan Programmes"
   },
-
   "settings": {
     "pagination": 6,
     "summary_length": 100
   },
-
   "google_tag_manager": {
     "enable": false,
     "gtm_id": "GTM-XXXXXX"
   },
-
   "call_to_action": {
-    "title": "Helping teams in the world with focus",
-    "description": "Lorem ipsum dolor sit sed dmi amet, consectetur adipiscing. Cdo tellus, sed condimentum volutpat.",
+    "title": "京都で、日本語を学び、世界とつながる。",
+    "description": "集中日本語、Japan Studies、フィールドワーク、立命館BUDDYとの交流を組み合わせた短期プログラムです。",
     "button": {
-      "label": "Download The Theme",
-      "link": "https://themefisher.com/astro-themes/pinwheel-astro"
+      "label": "4つのプログラムを見る",
+      "link": "/#programs"
     }
   },
-
   "params": {
-    "footer_description": "Lorem ipsum dolor sit sed dmi amet, consectetur adipiscing. Cdo tellus, sed condimentum volutpat.",
-    "email": "info@andromeda.io",
-    "location": "2118 Thornridge Cir. Syracuse, Connecticut 35624",
-    "phone": "+704-555-0127",
+    "footer_description": "This is a prototype website created for evaluation purposes. It is not an official university website.",
+    "email": "rsjprwjp@st.ritsumei.ac.jp",
+    "location": "56-1 Toji-in Kita-machi, Kita-ku, Kyoto 603-8577 Japan",
+    "phone": "+81-75-466-3009",
     "contact_form_action": "#",
-    "copyright": "Copyright © 2025 a theme by [Themefisher](https://themefisher.com)"
+    "copyright": "Prototype site for evaluation / Theme base by [Themefisher](https://themefisher.com)"
   },
-
   "metadata": {
-    "meta_author": "Themefisher",
+    "meta_author": "Ritsumeikan Study Abroad Center Prototype",
     "meta_image": "/images/og-image.png",
-    "meta_description": "pinwheel astro"
+    "meta_description": "立命館大学で実施するRSJP・RWJP・Expressの短期日本語プログラムを紹介する評価用プロトタイプサイト"
   }
 }
