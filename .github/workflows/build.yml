@@ -2,7 +2,7 @@ name: Build and review Astro site
 
 on:
   push:
-    branches: [main, agent/pinwheel-foundation]
+    branches: [main, agent/pinwheel-foundation, agent/import-real-pinwheel]
   pull_request:
     branches: [main]
 
@@ -12,6 +12,7 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -22,7 +23,7 @@ jobs:
           node-version: 22
 
       - name: Install dependencies
-        run: npm install
+        run: npm install --legacy-peer-deps
 
       - name: Check and build
         run: npm run build
@@ -30,11 +31,11 @@ jobs:
       - name: Install Playwright browser
         run: npx playwright install --with-deps chromium
 
-      - name: Start preview and capture homepage
+      - name: Serve built site and capture homepage
         run: |
-          npm run preview -- --host 127.0.0.1 > /tmp/preview.log 2>&1 &
-          npx wait-on http://127.0.0.1:4321/study-abroad-pinwheel/
-          npx playwright screenshot --viewport-size=1536,1024 --full-page http://127.0.0.1:4321/study-abroad-pinwheel/ homepage.png
+          python3 -m http.server 8080 --directory dist > /tmp/http-server.log 2>&1 &
+          npx wait-on --timeout 30000 http://127.0.0.1:8080/
+          npx playwright screenshot --viewport-size=1536,1024 --full-page http://127.0.0.1:8080/ homepage.png
 
       - name: Upload screenshot
         uses: actions/upload-artifact@v4
