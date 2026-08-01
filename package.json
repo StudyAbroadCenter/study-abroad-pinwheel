@@ -7,7 +7,7 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && node scripts/fix-github-pages-paths.mjs",
+    "build": "astro build && node scripts/fix-github-pages-assets.mjs",
     "preview": "astro preview",
     "check": "astro check",
     "format": "prettier -w .",
