@@ -1,0 +1,224 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const path = (value: string) => `${base}${value}`;
+
+const programmes = [
+  {
+    number: "01",
+    title: "RSJP",
+    subtitle: "Summer / 5 weeks",
+    date: "2026.6.16–7.17",
+    hours: "74 hours",
+    fee: "¥370,000",
+    href: "/programs/rsjp",
+    accent: "#a0002b",
+  },
+  {
+    number: "02",
+    title: "RSJP Express",
+    subtitle: "Summer / 2 weeks",
+    date: "2026.7.28–8.7",
+    hours: "28.5 hours",
+    fee: "¥170,000",
+    href: "/programs/rsjp-express",
+    accent: "#d36b18",
+  },
+  {
+    number: "03",
+    title: "RWJP",
+    subtitle: "Winter / 5 weeks",
+    date: "2027.1.12–2.11",
+    hours: "74 hours",
+    fee: "¥370,000",
+    href: "/programs/rwjp",
+    accent: "#176b45",
+  },
+  {
+    number: "04",
+    title: "RWJP Express",
+    subtitle: "Winter / 2 weeks",
+    date: "2027.2.16–2.26",
+    hours: "28.5 hours",
+    fee: "¥170,000",
+    href: "/programs/rwjp-express",
+    accent: "#245aa8",
+  },
+];
+---
+
+<div class="study-home">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-photo" aria-hidden="true"></div>
+    <div class="hero-wash" aria-hidden="true"></div>
+
+    <div class="hero-copy container">
+      <p class="eyebrow">KYOTO · RITSUMEIKAN · SHORT PROGRAMMES</p>
+      <h1 id="hero-title">学ぶだけでは、<br />終わらない。</h1>
+      <p class="script">Make it real.</p>
+      <p class="lead">
+        日本語、日本文化、京都でのフィールドワーク、そして立命館BUDDYとの交流。<br />
+        教室で学んだ言葉を、京都で本物の経験に変える短期プログラムです。
+      </p>
+
+      <div class="hero-actions">
+        <a class="primary-action" href="#programs">プログラムを見る <span>→</span></a>
+        <a class="secondary-action" href="#experience">学びと体験 <span>→</span></a>
+      </div>
+
+      <dl class="hero-facts">
+        <div><dt>SEASON</dt><dd>Summer / Winter</dd></div>
+        <div><dt>DURATION</dt><dd>2 or 5 weeks</dd></div>
+        <div><dt>LOCATION</dt><dd>Kyoto, Japan</dd></div>
+      </dl>
+    </div>
+
+    <a class="round-cta" href="#programs" aria-label="2週間から始めるプログラムを見る">
+      <span class="small">京都で、世界とつながる</span>
+      <strong>2週間〜</strong>
+      <span class="pill">まずはチェック</span>
+    </a>
+  </section>
+
+  <section id="programs" class="programme-section container">
+    <div class="section-heading">
+      <div>
+        <p class="section-kicker">PROGRAMMES</p>
+        <h2>選ぶ。比べる。<span>飛び込む。</span></h2>
+      </div>
+      <p>
+        夏・冬、5週間・2週間。学びたい時期と滞在期間に合わせて、
+        4つのプログラムから選べます。
+      </p>
+    </div>
+
+    <div class="programme-grid">
+      {programmes.map((programme) => (
+        <a class="programme-card" href={path(programme.href)} style={`--accent:${programme.accent}`}>
+          <div class="card-top">
+            <span class="programme-number">{programme.number}</span>
+            <span class="arrow">↗</span>
+          </div>
+          <p class="programme-season">{programme.subtitle}</p>
+          <h3>{programme.title}</h3>
+          <dl>
+            <div><dt>Dates</dt><dd>{programme.date}</dd></div>
+            <div><dt>Learning</dt><dd>{programme.hours}</dd></div>
+            <div><dt>Fee</dt><dd>{programme.fee}</dd></div>
+          </dl>
+          <div class="card-band">View programme</div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section id="experience" class="experience-section">
+    <div class="container experience-grid">
+      <div class="experience-copy">
+        <p class="section-kicker light">LEARN · EXPERIENCE · CONNECT</p>
+        <h2>日本語を、<br />教室の外まで連れていく。</h2>
+        <p>
+          午前の集中日本語で学び、Japan Studiesや京都でのフィールドワークで確かめる。
+          さらに立命館BUDDYとの交流を通して、言葉を人とのつながりへ変えていきます。
+        </p>
+        <ul>
+          <li>Intensive Japanese</li>
+          <li>Japan Studies & Fieldwork</li>
+          <li>Ritsumeikan BUDDY</li>
+        </ul>
+      </div>
+      <div class="experience-panel">
+        <div class="panel-stat"><strong>74h</strong><span>5-week programme</span></div>
+        <div class="panel-stat"><strong>28.5h</strong><span>Express programme</span></div>
+        <div class="panel-note">京都という教室で、学びを現実に。</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="prototype-note container">
+    <p>This is a prototype website created for evaluation purposes. It is not an official university website.</p>
+  </section>
+</div>
+
+<style>
+  .study-home { --enji:#9e002f; --deep:#5b001b; --gold:#f3c51f; --ink:#171313; --ivory:#f7f2e8; color:var(--ink); }
+  .hero { position:relative; min-height:780px; overflow:hidden; background:#ddd; isolation:isolate; }
+  .hero-photo { position:absolute; inset:0; z-index:-3; background-image:url('/images/intro-thumbnail.png'); background-size:cover; background-position:center; transform:scale(1.03); }
+  .hero-photo::after { content:""; position:absolute; inset:0; background:linear-gradient(90deg,rgba(20,10,12,.16),rgba(20,10,12,.02) 55%,rgba(20,10,12,.18)); }
+  .hero-wash { position:absolute; inset:0 auto 0 0; z-index:-2; width:min(58%,900px); background:linear-gradient(105deg,rgba(255,255,255,.98) 0 70%,rgba(255,255,255,.88) 70.2%,rgba(255,255,255,0) 70.5%); clip-path:polygon(0 0,88% 0,72% 100%,0 100%); }
+  .hero-copy { padding-top:110px; padding-bottom:80px; }
+  .eyebrow,.section-kicker { color:var(--enji); font-weight:800; letter-spacing:.18em; font-size:.78rem; }
+  .hero h1 { max-width:720px; margin:24px 0 0; font-size:clamp(4rem,7.2vw,7.7rem); line-height:.92; letter-spacing:-.08em; font-weight:900; }
+  .script { margin:-10px 0 8px 360px; color:#c4003a; font-family:cursive; font-size:clamp(2rem,4vw,4.3rem); transform:rotate(-5deg); }
+  .lead { max-width:650px; font-size:1.06rem; line-height:1.9; font-weight:600; }
+  .hero-actions { display:flex; gap:14px; margin-top:34px; flex-wrap:wrap; }
+  .hero-actions a { display:inline-flex; align-items:center; justify-content:space-between; gap:38px; min-width:220px; padding:18px 24px; border-radius:4px; font-weight:800; }
+  .primary-action { background:var(--enji); color:#fff; }
+  .secondary-action { border:2px solid var(--enji); color:var(--enji); background:#fff; }
+  .hero-facts { display:flex; gap:0; width:min(700px,100%); margin-top:44px; background:rgba(255,255,255,.94); box-shadow:0 20px 55px rgba(47,10,20,.13); }
+  .hero-facts div { flex:1; padding:20px 24px; border-right:1px solid #e3d8dc; }
+  .hero-facts div:last-child { border-right:0; }
+  .hero-facts dt { color:var(--enji); font-size:.68rem; letter-spacing:.14em; font-weight:800; }
+  .hero-facts dd { margin-top:5px; font-size:1rem; font-weight:800; }
+  .round-cta { position:absolute; right:7vw; bottom:13%; width:230px; aspect-ratio:1; border-radius:50%; background:var(--gold); color:#111; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; box-shadow:0 24px 60px rgba(0,0,0,.24); transform:rotate(-5deg); }
+  .round-cta .small { width:150px; font-weight:800; line-height:1.45; }
+  .round-cta strong { font-size:2.5rem; line-height:1.1; margin:5px 0 14px; }
+  .round-cta .pill { color:#fff; background:#111; border-radius:999px; padding:9px 18px; font-size:.82rem; font-weight:800; }
+
+  .programme-section { padding-top:100px; padding-bottom:120px; }
+  .section-heading { display:grid; grid-template-columns:1.4fr .8fr; gap:50px; align-items:end; margin-bottom:48px; }
+  .section-heading h2 { margin-top:10px; font-size:clamp(2.8rem,5vw,5.4rem); line-height:1; letter-spacing:-.06em; }
+  .section-heading h2 span { text-decoration:underline; text-decoration-color:var(--gold); text-decoration-thickness:.15em; text-underline-offset:.08em; }
+  .section-heading > p { line-height:1.9; font-weight:600; }
+  .programme-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:18px; }
+  .programme-card { position:relative; display:flex; flex-direction:column; min-height:430px; padding:28px 26px 0; overflow:hidden; border:1px solid #e8e1dc; border-radius:18px; background:#fff; color:var(--ink); box-shadow:0 20px 60px rgba(32,8,15,.06); transition:transform .25s ease,box-shadow .25s ease; }
+  .programme-card:hover { transform:translateY(-8px); box-shadow:0 26px 70px rgba(32,8,15,.13); }
+  .card-top { display:flex; justify-content:space-between; align-items:center; }
+  .programme-number { color:var(--accent); font-size:3rem; font-weight:900; line-height:1; }
+  .arrow { width:38px; height:38px; border-radius:50%; display:grid; place-items:center; background:color-mix(in srgb,var(--accent) 12%,white); color:var(--accent); font-weight:900; }
+  .programme-season { margin-top:34px; color:var(--accent); font-size:.78rem; letter-spacing:.12em; text-transform:uppercase; font-weight:900; }
+  .programme-card h3 { margin:10px 0 30px; font-size:1.7rem; line-height:1.15; }
+  .programme-card dl { margin-top:auto; margin-bottom:28px; }
+  .programme-card dl div { display:flex; justify-content:space-between; gap:16px; padding:9px 0; border-bottom:1px solid #eee8e4; }
+  .programme-card dt { color:#746b6d; font-size:.77rem; text-transform:uppercase; letter-spacing:.08em; }
+  .programme-card dd { font-weight:800; text-align:right; }
+  .card-band { margin:0 -26px; padding:17px 26px; background:var(--accent); color:#fff; font-weight:800; }
+
+  .experience-section { background:var(--deep); color:#fff; padding:110px 0; overflow:hidden; }
+  .experience-grid { display:grid; grid-template-columns:1.1fr .9fr; gap:80px; align-items:center; }
+  .section-kicker.light { color:#ffd95a; }
+  .experience-copy h2 { margin:14px 0 28px; font-size:clamp(3rem,5vw,5.7rem); line-height:1; letter-spacing:-.06em; }
+  .experience-copy p { max-width:690px; color:#f2e5e9; font-size:1.05rem; line-height:2; }
+  .experience-copy ul { display:flex; gap:10px; flex-wrap:wrap; margin-top:28px; }
+  .experience-copy li { border:1px solid rgba(255,255,255,.28); border-radius:999px; padding:10px 16px; }
+  .experience-panel { position:relative; min-height:430px; border-radius:30px; padding:48px; background:linear-gradient(145deg,#b40037,#700021); box-shadow:inset 0 0 0 1px rgba(255,255,255,.1); }
+  .experience-panel::before { content:""; position:absolute; width:260px; height:260px; border-radius:50%; right:-70px; top:-80px; border:54px solid rgba(255,216,72,.92); }
+  .panel-stat { position:relative; display:flex; align-items:baseline; gap:18px; padding:26px 0; border-bottom:1px solid rgba(255,255,255,.25); }
+  .panel-stat strong { font-size:4.2rem; line-height:1; }
+  .panel-stat span { color:#f3dfe5; font-weight:700; }
+  .panel-note { position:relative; margin-top:46px; font-size:1.3rem; font-weight:900; }
+  .prototype-note { padding-top:34px; padding-bottom:34px; text-align:center; color:#7f7476; font-size:.82rem; }
+
+  @media (max-width:1100px) {
+    .hero { min-height:720px; }
+    .hero-wash { width:74%; }
+    .round-cta { width:190px; right:3vw; }
+    .programme-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  }
+  @media (max-width:760px) {
+    .hero { min-height:auto; padding-bottom:40px; background:#fff; }
+    .hero-photo { position:relative; height:320px; background-position:center; }
+    .hero-wash { display:none; }
+    .hero-copy { padding-top:52px; padding-bottom:20px; }
+    .hero h1 { font-size:3.55rem; }
+    .script { margin:8px 0 20px 80px; font-size:2.6rem; }
+    .lead br { display:none; }
+    .round-cta { position:relative; right:auto; bottom:auto; margin:-120px 20px 0 auto; width:165px; }
+    .hero-facts { display:grid; grid-template-columns:1fr; }
+    .hero-facts div { border-right:0; border-bottom:1px solid #e3d8dc; }
+    .section-heading,.experience-grid { grid-template-columns:1fr; gap:28px; }
+    .programme-grid { grid-template-columns:1fr; }
+    .programme-section { padding-top:72px; padding-bottom:80px; }
+    .experience-section { padding:80px 0; }
+    .experience-panel { min-height:360px; padding:32px; }
+  }
+</style>
