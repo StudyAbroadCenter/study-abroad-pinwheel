@@ -1,6 +1,13 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
+// Vercel serves the site from the domain root, so GitHub Pages-specific
+// rewriting and validation must not run during Vercel builds.
+if (process.env.VERCEL) {
+  console.log('Skipping GitHub Pages asset rewriting on Vercel.');
+  process.exit(0);
+}
+
 const root = path.resolve('dist');
 const base = '/study-abroad-pinwheel';
 const textExtensions = new Set(['.html', '.css', '.js', '.xml', '.txt']);
