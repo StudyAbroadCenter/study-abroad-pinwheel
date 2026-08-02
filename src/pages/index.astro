@@ -1,24 +1,11 @@
 ---
+import StudyAbroadHome from "@/components/StudyAbroadHome.astro";
 import Base from "@/layouts/Base.astro";
-import Banner from "@/layouts/components/Banner.astro";
-import KeyFeatures from "@/layouts/components/KeyFeatures.astro";
-import Service from "@/layouts/components/Service.astro";
-import Testimonial from "@/layouts/components/Testimonial.astro";
-import Cta from "@/layouts/partials/Cta.astro";
-import type { CollectionEntry } from "astro:content";
-import { getEntry } from "astro:content";
-
-const homepage = (await getEntry(
-  "homepage",
-  "-index"
-)) as CollectionEntry<"homepage">;
-const { banner, key_features, service, testimonial } = homepage.data;
 ---
 
-<Base>
-  <Banner banner={banner} />
-  <KeyFeatures key_features={key_features} />
-  <Service service={service} />
-  <Testimonial testimonial={testimonial} />
-  <Cta />
+<Base
+  title="立命館大学 短期受入プログラム"
+  description="京都で日本語、日本文化、フィールドワーク、立命館BUDDYとの交流を体験する短期プログラムの評価用プロトタイプサイト"
+>
+  <StudyAbroadHome />
 </Base>
